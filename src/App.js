@@ -4,7 +4,7 @@ import HitCounter from "./HitCounter";
 import MemberList from "./MemberList";
 import MemberListComplex from "./MemberListComplex";
 import ChangeTitle from "./ChangeTitle";
-import { INIT_LIST } from '../data/INIT_LIST';
+import { INIT_LIST } from './data/INIT_LIST';
 
 import 'mvp.css';
 import "./styles.css";
@@ -102,7 +102,7 @@ export default function App() {
             <h2>Lifecycle</h2>
           </header>
           <aside>
-            
+
           </aside>
         </article>
       </main>
@@ -120,7 +120,7 @@ export default function App() {
             <h2>Context</h2>
           </header>
           <aside>
-            
+
           </aside>
         </article>
       </main>

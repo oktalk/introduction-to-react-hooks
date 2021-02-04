@@ -1,26 +1,5 @@
 import React, { useState } from "react";
 
-const removeMember = (member, list, updateList) => {
-  const { currentMembers } = list.team;
-  const amendedList = {
-    ...list,
-    team: {
-      ...list.team,
-      currentMembers: currentMembers.filter(m => m.name !== member.name)
-    }
-  };
-  updateList(amendedList);
-}
-
-const ListItem = ({member, list, updateList}) => {
-  return (
-    <li className="list-item">
-      {member.name} 
-      <small role="button" onClick={() => removeMember(member, list, updateList)}> &nbsp;&nbsp;&nbsp;remove </small>
-    </li>
-  );
-}
-
 const MemberList = function({ initList }) {
   const [list, updateList] = useState(initList);
   const [newMember, setNewMember] = useState('');
@@ -34,21 +13,49 @@ const MemberList = function({ initList }) {
           ...list.team.currentMembers,
           {id: currentMembers.length, name: newMember}
         ]
-      } 
+      }
     }
     updateList(amendedList);
   };
+
+  const removeMember = (member) => {
+    const { currentMembers } = list.team;
+    const amendedList = {
+      ...list,
+      team: {
+        ...list.team,
+        currentMembers: currentMembers.filter((m) => m.name !== member.name),
+      },
+    };
+    updateList(amendedList);
+  };
+
   return (
     <>
       <ul>
-        {
-          list?.team.currentMembers.map(member =>
-            <ListItem key={member.id} member={member} list={list} updateList={updateList} />
-          )
-        }
+        {list?.team.currentMembers.map((member) => (
+          <li key={member.id} className="list-item">
+            {member.name}
+            <small role="button" onClick={() => removeMember(member)}>
+              {' '}
+              &nbsp;&nbsp;&nbsp;remove{' '}
+            </small>
+          </li>
+        ))}
       </ul>
-      <input value={newMember} onChange={(e) => {setNewMember(e.target.value)}} placeholder="New member..." />
-      <button disabled={!newMember.length} onClick={addMember} className="btn">Update</button>
+      <label htmlFor="newMember">Add new member</label>
+      <input
+        id="newMember"
+        name="newMember"
+        value={newMember}
+        onChange={(e) => {
+          setNewMember(e.target.value);
+        }}
+        placeholder="New member..."
+      />
+      <button disabled={!newMember.length} onClick={addMember} className="btn">
+        Update
+      </button>
     </>
   );
 }
