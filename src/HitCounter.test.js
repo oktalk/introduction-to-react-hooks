@@ -1,7 +1,7 @@
 import React from "react";
 import '@testing-library/jest-dom/extend-expect'
 import { render, fireEvent } from '@testing-library/react';
-import HitCounter from "./index";
+import HitCounter from "./HitCounter";
 
 describe('on mount', () => {
   test('renders the button', () => {
