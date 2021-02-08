@@ -5,8 +5,16 @@ const ChangeTitle = () => {
   const [title, setTitle] = useState('Hello World!');
   useTitle(title);
   return (
-    <input value={title} onChange={(e) => setTitle(e.target.value)} />
+    <div>
+      <label htmlFor="changeTitle">Change Title</label>
+      <input
+        id="changeTitle"
+        name="changeTitle"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+    </div>
   );
-}
+};
 
 export default ChangeTitle;
